@@ -1,0 +1,19 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center;">
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete this {{ type }}: <strong>{{ item }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" style="padding: 10px 20px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            Yes, Delete
+        </button>
+        <a href="{% if type == 'Product' %}{% url 'home' %}{% else %}{% url 'category_list' %}{% endif %}" 
+           style="padding: 10px 20px; background-color: #3498db; color: white; border-radius: 5px; text-decoration: none;">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}
