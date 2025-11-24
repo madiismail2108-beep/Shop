@@ -77,11 +77,11 @@ class Attribute(BaseModel):
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField()  # 1..5
+    rating = models.PositiveSmallIntegerField() 
     comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.product.title} — {self.rating}"
-
+    
 # Create your models here.

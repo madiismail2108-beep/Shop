@@ -41,3 +41,8 @@ def save_product(sender,instance,**kwargs):
     with open(file_path,'+w') as f:
         json.dump(product_data,f,indent=4,default=str)
     
+def decrease_product_amount(sender, instance, **kwargs):
+    if instance.amount > 0:
+        instance.amount -= 1
+        instance.save()
+

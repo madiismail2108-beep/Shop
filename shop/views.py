@@ -92,7 +92,7 @@ def product_update(request, pk):
 def product_list(request):
     products = Product.objects.annotate(
         avg_rating=Coalesce(Avg('reviews__rating'), 0.0)
-    ).order_by('-avg_rating', 'title')
+    ).order_by('-avg_rating', 'name')
 
     overall = Product.objects.aggregate(overall_avg=Avg('reviews__rating'))
     overall_avg = overall['overall_avg'] or 0.0
@@ -108,7 +108,7 @@ def product_delete(request, pk):
     product.delete()
     products = Product.objects.annotate(
         avg_rating=Coalesce(Avg('reviews__rating'), 0.0)
-    ).order_by('-avg_rating', 'title')  
+    ).order_by('-avg_rating', 'name')  
 
     context = {
         'products': products,
@@ -132,5 +132,7 @@ def contact_view(request):
         form = ContactForm()
     return render(request, 'store/contact.html', {'form': form})
 
+def home(request):
+    return render(request, 'shop/home.html')
 # Create your views here.
 
