@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib import admin
 from .models import Category, Product, Image, Attribute, AttributeKey, AttributeValue
 from import_export.admin import ImportExportModelAdmin
 from django.utils.html import format_html

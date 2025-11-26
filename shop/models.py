@@ -48,6 +48,11 @@ class Image(BaseModel):
                                 blank=True
                                 )
     is_primary = models.BooleanField(default=False)
+    def main_image(self):
+        primary = self.images.filter(is_primary=True).first()
+        return primary.image.url if primary else (
+            self.images.first().image.url if self.images.exists() else None
+        )
     
     def __str__(self):
         return f'{self.product} - {self.image.url}'
@@ -82,6 +87,6 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.product.title} — {self.rating}"
+        return f"{self.product.name} — {self.rating}"
     
 # Create your models here.

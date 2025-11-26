@@ -12,8 +12,14 @@
 
     {% for p in products %}
         <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+            
+            {% if p.main_image %}
+                <img src="{{ p.main_image }}" alt="{{ p.name }}" width="150" style="border-radius:8px; object-fit:cover;">
+            {% else %}
+                <p>No image</p>
+            {% endif %}
+
             <h3>{{ p.name }}</h3>
-            <p>{{ p.description }}</p>
             <p><b>${{ p.price }}</b> — {{ p.category }}</p>
             <a href="{% url 'product_update' p.pk %}">✏️ Edit</a> |
             <a href="{% url 'product_delete' p.pk %}">🗑️ Delete</a>
