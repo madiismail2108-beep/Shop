@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to Learning Platform</h1>
+    <p class="lead">Choose a course and start learning</p>
+
+    <a href="{% url 'category_list' %}" class="btn btn-primary">
+        View Categories
+    </a>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">
+        View Products
+    </a>
+</div>
+{% endblock %}
